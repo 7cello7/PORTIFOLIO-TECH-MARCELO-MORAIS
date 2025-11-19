@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contato - Marcelo Morais</title>
+  <link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+  <header>
+    <header class="topbar">
+        <div class="logo">Marcelo <span>Morais</span></div>
+        <nav class="nav" id="navMenu">
+          <a href="../../index.html" class="active">Home</a>
+          <a href="intro.html">About-me</a>
+          <a href="habilidades.html">Habilidades</a>
+          <a href="../tendencias/tendencias.html">Tendências</a>
+          <a href="contato.html">Contato</a>
+          <a href="carreira.html">Carreira</a>
+        </nav>
+  </header>
+
+  <main class="contact">
+    <div class="contact-container">
+      <h1 class="contact-title">Fale comigo</h1>
+      <p class="contact-subtitle">
+        Curtiu meu trabalho ou quer tirar uma dúvida? Me manda uma mensagem 
+      </p>
+
+      <section class="contact-grid">
+        <!-- CARD: Formulário -->
+        <div class="contact-card">
+          <form id="contactForm" class="contact-form">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+              </div>
+              <div class="form-field">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="assunto">Assunto</label>
+                <input type="text" id="assunto" name="assunto" placeholder="Ex.: Vaga / Projeto" required />
+              </div>
+              <div class="form-field">
+                <label for="tipo">Tipo</label>
+                <select id="tipo" name="tipo">
+                  <option value="Contato geral">Contato geral</option>
+                  <option value="Parceria">Parceria</option>
+                  <option value="Vaga/Estágio">Vaga</option>
+                  <option value="Freelancer">Freelancer</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" rows="6" placeholder="Conte um pouco da sua necessidade..." required></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Enviar</button>
+              <button type="reset" class="btn-ghost">Limpar</button>
+            </div>
+
+            <p class="form-tip">
+              * Este formulário abre seu app de e-mail para envio (sem backend).
+            </p>
+          </form>
+        </div>
+
+        <!-- CARD: Contatos rápidos -->
+        <aside class="contact-card contact-info">
+          <h2>Contatos diretos</h2>
+          <ul class="contact-list">
+            <li>
+              <span>E-mail</span>
+              <a href="mailto:marcelo.vinhomorais@gmail.com">marcelo.vinhomorais@gmail.com</a>
+            </li>
+            <li>
+              <span>WhatsApp</span>
+              <a href="https://wa.me/55" target="_blank" rel="noopener">+55 (11) 99998-5844</a>
+            </li>
+            <li>
+              <span>LinkedIn</span>
+              <a href="#" target="_blank" rel="noopener">in/marceloasmorais/</a>
+            </li>
+            <li>
+              <span>GitHub</span>
+              <a href="#" target="_blank" rel="noopener">github.com/7cello7</a>
+            </li>
+          </ul>
+
+          <div class="contact-badges">
+            <span class="badge">Disponível para freelancer</span>
+            <span class="badge">Disponível para vaga estágio</span>
+          </div>
+
+          <div class="contact-note">
+            <p>
+             
+            </p>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 - Marcelo Morais</p>
+  </footer>
+
+  <script>
+    // MAILTO inteligente (funciona em site estático)
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const assunto = document.getElementById('assunto').value.trim();
+      const tipo = document.getElementById('tipo').value;
+      const mensagem = document.getElementById('mensagem').value.trim();
+
+      if (!nome || !email || !assunto || !mensagem) {
+        alert('Preencha todos os campos obrigatórios.');
+        return;
+      }
+
+      const to = 'marcelo.vinhomorais@gmail.com';
+      const subject = encodeURIComponent(`[${tipo}] ${assunto} — ${nome}`);
+      const bodyLines = [
+        `Nome: ${nome}`,
+        `E-mail: ${email}`,
+        `Tipo: ${tipo}`,
+        '',
+        'Mensagem:',
+        mensagem,
+        '',
+        '— Enviado via site de portfólio'
+      ];
+      const body = encodeURIComponent(bodyLines.join('\n'));
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
